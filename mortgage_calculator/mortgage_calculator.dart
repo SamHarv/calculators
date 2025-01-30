@@ -3,15 +3,15 @@ import 'dart:io';
 import 'mortgage_calculator_model.dart';
 
 void mortgageCalculator() {
-  double purchasePrice = 0;
-  double startingBalance = 0;
+  double purchasePrice = 0; // Price of the house
+  double startingBalance = 0; // Money saved to put towards the house
   double interestRate = 0;
-  int loanTerm = 0;
-  int totalNumberWeeklyPayments = 0;
-  double stampDuty = 0;
-  double fundsNeeded = 0;
-  double weeklyPayment = 0;
-  MortgageCalculator mc = MortgageCalculator();
+  int loanTerm = 0; // Loan term in years
+  int totalNumberWeeklyPayments = 0; // Total number of weekly payments
+  double stampDuty = 0; // Stamp duty (land transfer tax)
+  double fundsNeeded = 0; // Funds needed to purchase the house
+  double weeklyPayment = 0; // Weekly repayment amount
+  MortgageCalculator mc = MortgageCalculator(); // The brain
 
   print("\nWelcome to the Mortgage Calculator!");
 
@@ -44,6 +44,7 @@ void mortgageCalculator() {
     exit(0);
   }
 
+  // Calculate funds needed
   fundsNeeded =
       mc.calculateFundsNeeded(startingBalance, purchasePrice, stampDuty);
 

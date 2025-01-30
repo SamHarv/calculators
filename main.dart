@@ -6,29 +6,33 @@ import 'compound_interest_calculator/compound_interest_calculator.dart';
 void main() {
   print("\nWelcome to The Dart CLI Calculator App!\n");
   int choice = 0;
+  // Application loop
   while (choice != 3) {
-    print("Please select an option:");
+    print("Please enter a number to select an option:");
     print("1. Mortgage Calculator");
     print("2. Compound Interest Calculator");
     print("3. Exit");
     try {
+      // Get user input
       choice = int.parse(stdin.readLineSync()!);
     } catch (e) {
       print("An error occurred: $e");
-      exit(0);
     }
 
     switch (choice) {
       case 1:
+        // Run the mortgage calculator
         mortgageCalculator();
         break;
       case 2:
+        // Run the compound interest calculator
         compoundInterestCalculator();
       case 3:
-        print("Farewell!");
+        // Exit the application
+        print("\nFarewell!\n");
         break;
       default:
-        print("Invalid choice. Please try again.");
+        print("Invalid choice. Please enter a number between 1 and 3.");
     }
   }
 }

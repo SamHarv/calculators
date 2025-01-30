@@ -1,6 +1,22 @@
-import 'compound_interest_calculator.dart';
+import 'investment_frequency_enum.dart';
 
 class CompoundInterestCalculator {
+  final double initialInvestment; // Initial investment amount
+  final double recurringInvestment; // Recurring investment amount
+  final InvestmentFrequency
+      investmentFrequency; // Frequency of recurring investment
+  final int durationYears; // Duration of investment in years
+  final double annualInterestRate; // Annual interest rate
+
+  CompoundInterestCalculator({
+    required this.initialInvestment,
+    required this.recurringInvestment,
+    required this.investmentFrequency,
+    required this.durationYears,
+    required this.annualInterestRate,
+  });
+
+  // Calculate the total amount invested
   double calculateTotalInvestment(
       double initialInvestment,
       double recurringInvestment,
@@ -26,12 +42,14 @@ class CompoundInterestCalculator {
     }
   }
 
+  // Calculate the total interest earned
   double calculateTotalInterestEarned(
       double totalInvestment, double totalValue) {
     return totalValue - totalInvestment;
   }
 
-  // If investmentFrequency is annual
+  // If investmentFrequency is annual, calculate total value of investment
+  // including interest
   double annualFrequencyTotalValue(double initialInvestment,
       double recurringInvestment, int duration, double annualInterestRate) {
     double interestRate = annualInterestRate / 100;
@@ -43,7 +61,8 @@ class CompoundInterestCalculator {
     return total;
   }
 
-  // If investmentFrequency is monthly
+  // If investmentFrequency is monthly, calculate total value of investment
+  // including interest
   double monthlyFrequencyTotalValue(double initialInvestment,
       double recurringInvestment, int duration, double annualInterestRate) {
     double interestRate = annualInterestRate / 100;
@@ -58,7 +77,8 @@ class CompoundInterestCalculator {
     return total;
   }
 
-  // If investmentFrequency is fortnightly
+  // If investmentFrequency is fortnightly, calculate total value of investment
+  // including interest
   double fortnightlyFrequencyTotalValue(double initialInvestment,
       double recurringInvestment, int duration, double annualInterestRate) {
     double interestRate = annualInterestRate / 100;
@@ -73,7 +93,8 @@ class CompoundInterestCalculator {
     return total;
   }
 
-  // If investmentFrequency is weekly
+  // If investmentFrequency is weekly, calculate total value of investment
+  // including interest
   double weeklyFrequencyTotalValue(double initialInvestment,
       double recurringInvestment, int duration, double annualInterestRate) {
     double interestRate = annualInterestRate / 100;
@@ -88,7 +109,8 @@ class CompoundInterestCalculator {
     return total;
   }
 
-  // If investmentFrequency is daily
+  // If investmentFrequency is daily, calculate total value of investment
+  // including interest
   double dailyFrequencyTotalValue(double initialInvestment,
       double recurringInvestment, int duration, double annualInterestRate) {
     double interestRate = annualInterestRate / 100;

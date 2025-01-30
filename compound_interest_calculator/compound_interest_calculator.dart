@@ -1,20 +1,15 @@
 import 'dart:io';
 
 import 'compound_interest_calculator_model.dart';
-
-enum InvestmentFrequency { daily, weekly, fortnightly, monthly, annually }
+import 'investment_frequency_enum.dart';
 
 void compoundInterestCalculator() {
-  double initialInvestment = 0;
-  double recurringInvestment = 0;
-  InvestmentFrequency investmentFrequency = InvestmentFrequency.annually;
-  int durationYears = 0;
-  double annualInterestRate = 0;
-
-  double totalInterestEarned = 0;
-  double totalInvestment = 0;
-  double totalValue = 0;
-  CompoundInterestCalculator cic = CompoundInterestCalculator();
+  double initialInvestment = 0; // Temp initial investment amount
+  double recurringInvestment = 0; // Temp recurring investment amount
+  InvestmentFrequency investmentFrequency =
+      InvestmentFrequency.annually; // Temp investment frequency
+  int durationYears = 0; // Temp investment duration in years
+  double annualInterestRate = 0; // Temp annual interest rate
 
   print("\nWelcome to the Compound Interest Calculator!");
 
@@ -30,7 +25,8 @@ void compoundInterestCalculator() {
       "\nYour initial investment is: \$${initialInvestment.toStringAsFixed(2)}");
 
   // Input whether there is a recurring investment
-  print("\nDo you intend to invest more at recurring intervals?:");
+  print(
+      "\nDo you intend to invest more at recurring intervals? Please enter a number:");
   print("1. Yes");
   print("2. No");
   int choice = 0;
@@ -42,6 +38,7 @@ void compoundInterestCalculator() {
   }
   switch (choice) {
     case 1:
+      // Input recurring investment amount
       print("\nPlease enter the amount of your recurring investment:");
       try {
         recurringInvestment = double.parse(stdin.readLineSync()!);
@@ -52,7 +49,9 @@ void compoundInterestCalculator() {
       print(
           "\nYour recurring investment is: \$${recurringInvestment.toStringAsFixed(2)}");
 
-      print("\nPlease select the frequency of your recurring investment:");
+      // Input recurring investment frequency
+      print(
+          "\nPlease select the number corresponding to the frequency of your recurring investment:");
       print("1. Daily");
       print("2. Weekly");
       print("3. Fortnightly");
@@ -86,6 +85,7 @@ void compoundInterestCalculator() {
       print(
           "\nYour recurring investment frequency is ${investmentFrequency.name}");
       break;
+    // No recurring investment
     case 2:
       print("\nYou have chosen not to make recurring investments.");
       break;
@@ -113,14 +113,24 @@ void compoundInterestCalculator() {
   }
   print("\nYour annual interest rate is: $annualInterestRate%");
 
+  // Create CompoundInterestCalculator object for calculations
+  CompoundInterestCalculator cic = CompoundInterestCalculator(
+    initialInvestment: initialInvestment,
+    recurringInvestment: recurringInvestment,
+    investmentFrequency: investmentFrequency,
+    durationYears: durationYears,
+    annualInterestRate: annualInterestRate,
+  );
+
   print("\nCalculating...");
   print("\n======================================================\n");
 
-  // Calculate total investment
-  totalInvestment = cic.calculateTotalInvestment(initialInvestment,
+  // Calculate total investment amount
+  double totalInvestment = cic.calculateTotalInvestment(initialInvestment,
       recurringInvestment, investmentFrequency, durationYears);
 
-  // Calculate total value
+  // Calculate total value of investment including interest
+  double totalValue = 0;
   switch (investmentFrequency) {
     case InvestmentFrequency.daily:
       totalValue = cic.dailyFrequencyTotalValue(initialInvestment,
@@ -144,7 +154,8 @@ void compoundInterestCalculator() {
       break;
   }
 
-  totalInterestEarned =
+  // Calculate total interest earned
+  double totalInterestEarned =
       cic.calculateTotalInterestEarned(totalInvestment, totalValue);
 
   // Output results

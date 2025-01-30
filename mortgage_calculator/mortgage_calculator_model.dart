@@ -1,6 +1,7 @@
 import 'dart:math';
 
 class MortgageCalculator {
+  // Calculate stamp duty based on the purchase price
   double calculateStampDuty(double purchasePrice) {
     if (purchasePrice <= 25000) {
       return purchasePrice * 0.014;
@@ -15,15 +16,18 @@ class MortgageCalculator {
     }
   }
 
+  // Calculate money needed to borrow to purchase the house
   double calculateFundsNeeded(
       double startingBalance, double purchasePrice, double stampDuty) {
     return purchasePrice + stampDuty - startingBalance;
   }
 
+  // Calculate the number of weekly payments based on the loan term
   int calculateNumberWeeklyPayments(int loanTerm) {
     return loanTerm * 52;
   }
 
+  // Calculate the weekly mortgage repayment amount with interest
   double calculateWeeklyPayment(
       double fundsNeeded, double interestRate, totalNumberWeeklyPayments) {
     double processedInterestRate = interestRate / 100 / 52;
