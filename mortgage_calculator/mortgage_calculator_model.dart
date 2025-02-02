@@ -27,6 +27,7 @@ class MortgageCalculator {
     return loanTerm * 52;
   }
 
+  // THE formula
   // Calculate the weekly mortgage repayment amount with interest
   double calculateWeeklyPayment(
       double fundsNeeded, double interestRate, totalNumberWeeklyPayments) {
