@@ -1,5 +1,7 @@
 # Calculators
 
+Command-line application written in Dart.
+
 - **Mortgage Calculator**
 - **Compound Interest Calculator**
 
